@@ -9,3 +9,8 @@ Route::resource('clients', ClientController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('sales', SaleController::class);
 
+Route::get('/api/config/cnpj-url', function () {
+    return response()->json([
+        'url' => config('app.cnpj_api_url', env('CNPJ_API_URL'))
+    ]);
+});

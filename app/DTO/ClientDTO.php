@@ -42,4 +42,14 @@ class ClientDTO
             $validated['number'] ?? null
         );
     }
+
+    public static function fromUpdateRequest(Request $request): array
+    {
+        return $request->validate([
+            'name' => 'string|max:255',
+            'cnpj' => ['string', new CNPJ()],
+            'address' => 'nullable|string',
+            'number' => 'nullable|string|max:15',
+        ]);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Sale extends Model
 {
@@ -20,6 +21,17 @@ class Sale extends Model
     public function order()
     {
         return $this->belongsTo(Order::class, 'order');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($sale) {
+            if (empty($sale->uuid)) {
+                $sale->uuid = Str::uuid();
+            }
+        });
     }
 }
 

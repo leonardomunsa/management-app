@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigInteger('number')->primary();
             $table->date('date');
-            $table->bigInteger('amount');
+            $table->double('amount');
+            $table->boolean('finished')->default(false);
             $table->timestamps();
         });
     }

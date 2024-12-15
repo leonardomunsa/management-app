@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->json('details');
+            $table->text('details');
             $table->bigInteger('amount');
-            $table->boolean('paid')->default(0);
-            $table->bigInteger('order_number');
+            $table->boolean('paid')->default(false);
+            $table->bigInteger('order_number')->nullable()->default(null);
             $table->foreign('order_number')->references('number')->on('orders')->onDelete('cascade');
             $table->uuid('client_uuid');
             $table->foreign('client_uuid')->references('uuid')->on('clients')->onDelete('cascade');

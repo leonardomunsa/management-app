@@ -8,18 +8,12 @@ use Illuminate\Validation\ValidationException;
 
 class ClientDTO
 {
-    public string $name;
-    public string $cnpj;
-    public ?string $address;
-    public ?string $number;
-
-    public function __construct(string $name, string $cnpj, ?string $address, ?string $number)
-    {
-        $this->name = $name;
-        $this->cnpj = $cnpj;
-        $this->address = $address;
-        $this->number = $number;
-    }
+    public function __construct(
+        public string $name,
+        public string $cnpj,
+        public ?string $address,
+        public ?string $number
+    ) {}
 
     /**
      * @param Request $request

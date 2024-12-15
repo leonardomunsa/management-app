@@ -3,40 +3,53 @@
 @section('title', 'Clients List')
 
 @section('content')
-    <div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold mb-6 text-center text-gray-700">Clients List</h1>
+    <div class="max-w-5xl mx-auto bg-white p-6 rounded-lg shadow-md min-h-screen">
+        <h1 class="text-3xl font-bold mb-4">Clients List</h1>
 
-        <div class="mb-4">
-            <a href="{{ route('clients.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                Create New Client
+        <!-- Botão de Adicionar Cliente -->
+        <div class="flex justify-end mb-4">
+            <a href="{{ route('clients.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded flex items-center">
+                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                Add Client
             </a>
         </div>
 
-        <table class="w-full table-auto bg-white border-collapse">
-            <thead>
-            <tr class="bg-gray-200">
-                <th class="border px-4 py-2">Name</th>
-                <th class="border px-4 py-2">CNPJ</th>
-                <th class="border px-4 py-2">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+        <!-- Lista de Clientes -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             @foreach ($clients as $client)
-                <tr class="hover:bg-gray-100">
-                    <td class="border px-4 py-2">{{ $client->name }}</td>
-                    <td class="border px-4 py-2">{{ $client->cnpj }}</td>
-                    <td class="border px-4 py-2">
-                        <a href="{{ route('clients.show', $client) }}" class="text-blue-500 hover:underline mr-2">View</a>
-                        <a href="{{ route('clients.edit', $client) }}" class="text-yellow-500 hover:underline mr-2">Edit</a>
+                <div class="p-4 bg-gray-100 rounded-lg shadow">
+                    <h2 class="text-xl font-semibold">{{ $client->name }}</h2>
+                    <p class="text-gray-600">{{ $client->cnpj }}</p>
+
+                    <!-- Botões de Ação -->
+                    <div class="flex mt-4 space-x-4">
+                        <a href="{{ route('clients.show', $client) }}" class="text-blue-500 hover:underline flex items-center">
+                            <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m6 0H9m6 0H9"></path>
+                            </svg>
+                            View
+                        </a>
+                        <a href="{{ route('clients.edit', $client) }}" class="text-yellow-500 hover:underline flex items-center">
+                            <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Edit
+                        </a>
                         <form action="{{ route('clients.destroy', $client) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="submit" class="text-red-500 hover:underline flex items-center" onclick="return confirm('Are you sure?')">
+                                <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                Delete
+                            </button>
                         </form>
-                    </td>
-                </tr>
+                    </div>
+                </div>
             @endforeach
-            </tbody>
-        </table>
+        </div>
     </div>
 @endsection

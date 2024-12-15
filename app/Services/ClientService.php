@@ -5,6 +5,7 @@ namespace App\Services;
 use App\DTO\ClientDTO;
 use App\Models\Client;
 use Exception;
+use Illuminate\Support\Collection;
 
 class ClientService
 {
@@ -27,8 +28,8 @@ class ClientService
         $newClient->save();
     }
 
-    public function getClient()
+    public function getClients(): Collection
     {
-
+        return Client::all();
     }
 }

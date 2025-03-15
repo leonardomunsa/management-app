@@ -11,7 +11,12 @@ class Client extends Model
     protected $primaryKey = 'uuid';
     public $incrementing = false;
 
-    protected $fillable = ['uuid', 'name', 'cnpj', 'address', 'number'];
+    protected $fillable = ['uuid', 'name', 'cnpj', 'address', 'number', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function sales()
     {

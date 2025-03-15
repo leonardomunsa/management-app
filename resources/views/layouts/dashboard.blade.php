@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My Laravel App')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans antialiased">
 <!-- Container que ocupa a tela toda em colunas -->
 <div class="flex flex-col min-h-screen">
-
     <!-- Cabeçalho / Nav -->
     <header class="p-6">
         <div class="container mx-auto flex justify-between items-center">
@@ -31,10 +29,9 @@
         </div>
     </header>
 
-    <!-- Área principal que cresce e centraliza o conteúdo -->
-    <main class="flex-grow flex items-center justify-center">
-        <!-- Outro container para controlar a largura do conteúdo -->
-        <div class="container mx-auto p-6 max-w-md">
+    <!-- Área principal: agora um container mais largo, ex.: max-w-7xl -->
+    <main class="flex-grow">
+        <div class="container mx-auto p-6 max-w-7xl">
             @yield('content')
         </div>
     </main>

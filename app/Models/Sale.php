@@ -11,7 +11,12 @@ class Sale extends Model
     protected $primaryKey = 'uuid';
     public $incrementing = false;
 
-    protected $fillable = ['uuid', 'details', 'amount', 'paid', 'order_id', 'client_uuid'];
+    protected $fillable = ['uuid', 'details', 'amount', 'paid', 'order_id', 'client_uuid', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function client()
     {

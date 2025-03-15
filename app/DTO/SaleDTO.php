@@ -12,10 +12,9 @@ class SaleDTO
         public float $amount,
         public ?bool $paid,
         public ?int $orderId,
-        public string $clientUuid
-    )
-    {
-    }
+        public string $clientUuid,
+        public ?int $user_id = null
+    ) {}
 
     /**
      * @param Request $request
@@ -25,10 +24,10 @@ class SaleDTO
     public static function fromRequest(Request $request): SaleDTO
     {
         $validated = $request->validate([
-            'details' => 'required|string|max:800',
-            'amount' => 'required|numeric',
-            'paid' => 'nullable|boolean',
-            'orderId' => 'nullable|integer',
+            'details'    => 'required|string|max:800',
+            'amount'     => 'required|numeric',
+            'paid'       => 'nullable|boolean',
+            'orderId'    => 'nullable|integer',
             'clientUuid' => 'required|string|max:255'
         ]);
 
@@ -44,10 +43,10 @@ class SaleDTO
     public static function fromUpdateRequest(Request $request): array
     {
         return $request->validate([
-            'details' => 'string|max:800',
-            'amount' => 'numeric',
-            'paid' => 'boolean',
-            'orderId' => 'integer',
+            'details'    => 'string|max:800',
+            'amount'     => 'numeric',
+            'paid'       => 'boolean',
+            'orderId'    => 'integer',
             'clientUuid' => 'string|max:255'
         ]);
     }

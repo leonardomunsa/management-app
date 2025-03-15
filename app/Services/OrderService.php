@@ -22,7 +22,8 @@ class OrderService
             'number' => $orderData->number,
             'date' => new \DateTime($orderData->date),
             'amount' => $orderData->amount,
-            'finished' => $orderData->finished ?? false
+            'finished' => $orderData->finished ?? false,
+            'user_id' => auth()->id()
         ]);
         $newOrder->save();
 

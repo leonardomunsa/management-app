@@ -14,7 +14,8 @@ class SaleService
             'details' => $saleData->details,
             'amount' => $saleData->amount,
             'paid' => $saleData->paid ?? false,
-            'client_uuid' => $saleData->clientUuid
+            'client_uuid' => $saleData->clientUuid,
+            'user_id' => auth()->id()
         ]);
         $newSale->save();
     }

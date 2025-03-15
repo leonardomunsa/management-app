@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('order_number')->references('number')->on('orders')->onDelete('cascade');
             $table->uuid('client_uuid');
             $table->foreign('client_uuid')->references('uuid')->on('clients')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

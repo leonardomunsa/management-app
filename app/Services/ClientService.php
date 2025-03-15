@@ -23,7 +23,8 @@ class ClientService
             'name' => $clientData->name,
             'cnpj' => $clientData->cnpj,
             'address' => $clientData->address,
-            'number' => $clientData->number
+            'number' => $clientData->number,
+            'user_id' => auth()->id()
         ]);
         $newClient->save();
     }

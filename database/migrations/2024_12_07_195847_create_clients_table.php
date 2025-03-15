@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('cnpj')->unique();
             $table->string('address');
             $table->string('number');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

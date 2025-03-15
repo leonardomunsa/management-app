@@ -11,14 +11,16 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
-        $sales = Sale::query()->latest()->limit(5)->get();
-        $clients = Client::query()->latest()->limit(5)->get();
-        $orders = Order::query()->latest()->paginate(5);
+        $userId = auth()->id();
+
+        $sales = Sale::where('user_id', $userId)->latest()->limit(5)->get();
+        $clients = Client::where('user_id', $userId)->latest()->limit(5)->get();
+        $orders = Order::where('user_id', $userId)->latest()->paginate(5);
 
         return view('dashboard', [
-            'sales' => $sales,
+            'sales'   => $sales,
             'clients' => $clients,
-            'orders' => $orders,
+            'orders'  => $orders,
         ]);
     }
 }

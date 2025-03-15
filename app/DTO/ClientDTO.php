@@ -12,7 +12,8 @@ class ClientDTO
         public string $name,
         public string $cnpj,
         public ?string $address,
-        public ?string $number
+        public ?string $number,
+        public ?int $user_id = null
     ) {}
 
     /**
@@ -23,10 +24,10 @@ class ClientDTO
     public static function fromRequest(Request $request): ClientDTO
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'cnpj' => ['required', 'string', new CNPJ()],
+            'name'    => 'required|string|max:255',
+            'cnpj'    => ['required', 'string', new CNPJ()],
             'address' => 'nullable|string',
-            'number' => 'nullable|string|max:15',
+            'number'  => 'nullable|string|max:15',
         ]);
 
         return new self(
@@ -40,10 +41,10 @@ class ClientDTO
     public static function fromUpdateRequest(Request $request): array
     {
         return $request->validate([
-            'name' => 'string|max:255',
-            'cnpj' => ['string', new CNPJ()],
+            'name'    => 'string|max:255',
+            'cnpj'    => ['string', new CNPJ()],
             'address' => 'nullable|string',
-            'number' => 'nullable|string|max:15',
+            'number'  => 'nullable|string|max:15',
         ]);
     }
 }

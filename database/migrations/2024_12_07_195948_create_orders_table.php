@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->double('amount');
             $table->boolean('finished')->default(false);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

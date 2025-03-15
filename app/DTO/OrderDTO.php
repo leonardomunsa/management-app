@@ -12,10 +12,9 @@ class OrderDTO
         public string $date,
         public ?bool $finished,
         public float $amount,
-        public array $sales
-    )
-    {
-    }
+        public array $sales,
+        public ?int $user_id = null
+    ) {}
 
     /**
      * @param Request $request
@@ -25,11 +24,11 @@ class OrderDTO
     public static function fromRequest(Request $request): OrderDTO
     {
         $validated = $request->validate([
-            'number' => 'required|numeric',
-            'date' => 'required|string',
+            'number'   => 'required|numeric',
+            'date'     => 'required|string',
             'finished' => 'nullable|boolean',
-            'amount' => 'required|numeric',
-            'sales' => 'required|array',
+            'amount'   => 'required|numeric',
+            'sales'    => 'required|array',
         ]);
 
         return new self(
@@ -44,11 +43,11 @@ class OrderDTO
     public static function fromUpdateRequest(Request $request): array
     {
         return $request->validate([
-            'number' => 'numeric',
-            'date' => 'string',
+            'number'   => 'numeric',
+            'date'     => 'string',
             'finished' => 'nullable|boolean',
-            'amount' => 'numeric',
-            'sales' => 'array',
+            'amount'   => 'numeric',
+            'sales'    => 'array',
         ]);
     }
 }

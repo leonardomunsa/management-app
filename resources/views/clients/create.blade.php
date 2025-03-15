@@ -83,8 +83,8 @@
                 const data = await response.json();
                 apiUrl = data.url;
             } catch (error) {
-                console.error('Error fetching API URL:', error);
-                alert('Error fetching API configuration. Please try again.');
+                console.error('Error fetching API URL:', error.message);
+                alert(`Error fetching API configuration: ${error.message}`);
             }
         }
 
@@ -119,7 +119,7 @@
                 document.getElementById('number').value = formatNumber(data.phones) || '';
 
             } catch (error) {
-                console.error('Error fetching CNPJ data:', error);
+                console.error('Error fetching CNPJ data:', error.message);
                 alert('Error fetching CNPJ data. Please try again.');
             }
         }
